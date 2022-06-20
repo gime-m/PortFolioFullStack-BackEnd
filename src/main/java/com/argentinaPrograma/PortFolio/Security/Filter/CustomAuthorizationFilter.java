@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -27,6 +28,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Slf4j
 public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
+    private String secretKey;
+    public CustomAuthorizationFilter (String secretKey){
+        this.secretKey = secretKey;
+    };
+    
     //aqui verificamos que el token enviado en las requests 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -37,7 +43,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             if(authHeader != null && authHeader.startsWith("Bearer ")){
                 try {
                     String token = authHeader.substring("Bearer ".length());
-                    Algorithm alg = Algorithm.HMAC256("secret".getBytes());
+                    Algorithm alg = Algorithm.HMAC256(secretKey.getBytes());
                     JWTVerifier verifier = JWT.require(alg).build();
                     DecodedJWT decodJWT = verifier.verify(token);
                     String username = decodJWT.getSubject();

@@ -12,6 +12,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,10 +27,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Slf4j 
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
-    private final AuthenticationManager authManager;
+    private final String secretKey;
+    private final AuthenticationManager authManager;  
   
-    public CustomAuthenticationFilter(AuthenticationManager authManager){
+    public CustomAuthenticationFilter(String secretKey, AuthenticationManager authManager){
         this.authManager = authManager;
+        this.secretKey = secretKey;
     };
     
     //Autenticacion con usuario y contraseña
@@ -45,8 +48,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) throws IOException, ServletException {
         User user = (User) auth.getPrincipal();
-        Algorithm alg = Algorithm.HMAC256("secret".getBytes());
-        
+        Algorithm alg = Algorithm.HMAC256(secretKey.getBytes());
         String accessToken = JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(new Date().getTime() + 10*60*1000))

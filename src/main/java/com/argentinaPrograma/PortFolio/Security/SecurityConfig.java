@@ -4,6 +4,7 @@ import com.argentinaPrograma.PortFolio.Security.Filter.CustomAuthenticationFilte
 import com.argentinaPrograma.PortFolio.Security.Filter.CustomAuthorizationFilter;
 import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -23,6 +24,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration @EnableWebSecurity @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+    @Value("${jwt_secret}")
+    public String secret;
+    
     private final UserDetailsService userDetServ;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     
@@ -46,8 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         
-        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
-        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilter(new CustomAuthenticationFilter(secret, authenticationManagerBean()));
+        http.addFilterBefore(new CustomAuthorizationFilter(secret), UsernamePasswordAuthenticationFilter.class);
     }
     
     @Bean
