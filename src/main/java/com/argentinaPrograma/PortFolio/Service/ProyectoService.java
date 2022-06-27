@@ -1,5 +1,6 @@
 package com.argentinaPrograma.PortFolio.Service;
 
+import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
 import com.argentinaPrograma.PortFolio.DTO.GetPutProyecto;
 import com.argentinaPrograma.PortFolio.DTO.PostProyecto;
 import com.argentinaPrograma.PortFolio.Model.Proyecto;
@@ -59,5 +60,15 @@ public class ProyectoService implements ProyectoServiceInterface{
         Proyecto item = modelMapper.map(proy, Proyecto.class);
         item.setPersonaProy(persRepo.getById(proy.getPersonaId()));
         proyRepo.save(item);
+    }
+    
+    @Override
+    public void editarOrden(List<DisplayOrder> order) {
+        Proyecto item;
+        for (DisplayOrder i : order){
+             item = proyRepo.findById(i.getId()).get();
+             item.setDisplayOrder(i.getDisplayOrder());
+             proyRepo.save(item);
+        }
     }
 }

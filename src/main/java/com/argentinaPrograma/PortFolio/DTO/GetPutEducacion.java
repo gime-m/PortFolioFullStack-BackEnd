@@ -20,4 +20,5 @@ public class GetPutEducacion {
     private Boolean isCurrent;
     private String imagen;  
     private Long personaId;
+    private int displayOrder;
 }

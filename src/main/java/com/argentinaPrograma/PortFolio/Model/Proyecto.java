@@ -40,7 +40,10 @@ public class Proyecto {
     private String link;
     
     @Column(length = 60)
-    private String imagen;    
+    private String imagen;  
+    
+    @Column(nullable = false)
+    private int displayOrder;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = Persona.class)
     @JoinColumn(name = "persona_id", nullable = false)

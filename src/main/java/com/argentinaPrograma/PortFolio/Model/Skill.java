@@ -36,6 +36,9 @@ public class Skill {
     @Column(nullable = false, length=10)
     private String tipo;
     
+    @Column(nullable = false)
+    private int displayOrder;
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = Persona.class)
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona personaSkill;

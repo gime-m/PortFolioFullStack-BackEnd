@@ -19,5 +19,6 @@ public class PostEducacion {
     private Boolean isCurrent;
     private String imagen;  
     private long personaId;
+    private int displayOrder;
     
 }

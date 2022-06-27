@@ -1,5 +1,6 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
+import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
 import com.argentinaPrograma.PortFolio.DTO.GetPutEducacion;
 import com.argentinaPrograma.PortFolio.DTO.PostEducacion;
 import java.util.List;
@@ -53,5 +54,10 @@ public class EducacionController {
     @PutMapping("/educ/editar")
     public void EditarEducacion(@RequestBody GetPutEducacion ed){
         edServ.editarElemento(ed);
-    }  
+    }
+    
+    @PutMapping("/educ/ordenar")
+    public void OrdenarExperiencia(@RequestBody List<DisplayOrder> order){
+        edServ.editarOrden(order);
+    }
 }

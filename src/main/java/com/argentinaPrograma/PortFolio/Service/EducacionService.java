@@ -1,5 +1,6 @@
 package com.argentinaPrograma.PortFolio.Service;
 
+import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
 import com.argentinaPrograma.PortFolio.DTO.GetPutEducacion;
 import com.argentinaPrograma.PortFolio.DTO.PostEducacion;
 import com.argentinaPrograma.PortFolio.Model.Educacion;
@@ -59,5 +60,15 @@ public class EducacionService implements EducacionServiceInterface{
         Educacion item = modelMapper.map(edu, Educacion.class);
         item.setPersonaEduc(persRepo.getById(edu.getPersonaId()));
         eduRepo.save(item);
+    }
+    
+    @Override
+    public void editarOrden(List<DisplayOrder> order) {
+        Educacion item;
+        for (DisplayOrder i : order){
+             item = eduRepo.findById(i.getId()).get();
+             item.setDisplayOrder(i.getDisplayOrder());
+             eduRepo.save(item);
+        }
     }
 }

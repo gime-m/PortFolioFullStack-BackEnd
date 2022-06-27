@@ -16,4 +16,5 @@ public class PostProyecto {
     private String link;
     private String imagen; 
     private long personaId;
+    private int displayOrder;
 }

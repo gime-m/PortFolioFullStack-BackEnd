@@ -41,6 +41,9 @@ public class Experiencia {
     private Date fechaFin;
     private Boolean isCurrent;
     
+    @Column(nullable = false)
+    private int displayOrder;
+    
     @Column(nullable = false, length=60)
     private String imagen;    
     

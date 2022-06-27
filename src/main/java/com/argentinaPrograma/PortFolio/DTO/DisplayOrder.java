@@ -8,12 +8,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-public class GetPutSkill {
+public class DisplayOrder {
     
-    private Long id;
-    private String titulo;
-    private int valor; 
-    private String tipo; 
-    private Long personaId;
-    private int displayOrder;
+     private Long id;
+     private int displayOrder;
 }

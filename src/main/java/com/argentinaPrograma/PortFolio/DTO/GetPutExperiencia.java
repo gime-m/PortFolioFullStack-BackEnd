@@ -19,5 +19,6 @@ public class GetPutExperiencia {
     private Date fechaFin;
     private Boolean isCurrent;
     private String imagen;  
+    private int displayOrder;
     private Long personaId;
 }

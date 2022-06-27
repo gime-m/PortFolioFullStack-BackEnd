@@ -14,4 +14,5 @@ public class PostSkill {
     private int valor; 
     private String tipo;     
     private long personaId;
+    private int displayOrder;
 }

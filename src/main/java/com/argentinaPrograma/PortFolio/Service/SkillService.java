@@ -1,5 +1,6 @@
 package com.argentinaPrograma.PortFolio.Service;
 
+import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
 import com.argentinaPrograma.PortFolio.DTO.GetPutSkill;
 import com.argentinaPrograma.PortFolio.DTO.PostSkill;
 import com.argentinaPrograma.PortFolio.Model.Skill;
@@ -59,6 +60,16 @@ public class SkillService implements SkillServiceInterface {
         Skill item = modelMapper.map(skill, Skill.class);
         item.setPersonaSkill(persRepo.getById(skill.getPersonaId()));
         skillRepo.save(item);
+    }
+    
+    @Override
+    public void editarOrden(List<DisplayOrder> order) {
+        Skill item;
+        for (DisplayOrder i : order){
+             item = skillRepo.findById(i.getId()).get();
+             item.setDisplayOrder(i.getDisplayOrder());
+             skillRepo.save(item);
+        }
     }
     
 }

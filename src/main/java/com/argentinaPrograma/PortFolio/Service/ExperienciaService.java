@@ -1,11 +1,11 @@
 package com.argentinaPrograma.PortFolio.Service;
 
+import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
 import com.argentinaPrograma.PortFolio.DTO.GetPutExperiencia;
 import com.argentinaPrograma.PortFolio.DTO.PostExperiencia;
 import com.argentinaPrograma.PortFolio.Model.Experiencia;
 import com.argentinaPrograma.PortFolio.Repository.ExperienciaRepository;
 import com.argentinaPrograma.PortFolio.Repository.PersonaRepository;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -60,5 +60,15 @@ public class ExperienciaService implements ExperienciaServiceInterface{
         Experiencia item = modelMapper.map(edu, Experiencia.class);
         item.setPersonaExp(persRepo.getById(edu.getPersonaId()));
         expRepo.save(item);
+    }
+
+    @Override
+    public void editarOrden(List<DisplayOrder> order) {
+        Experiencia item;
+        for (DisplayOrder i : order){
+             item = expRepo.findById(i.getId()).get();
+             item.setDisplayOrder(i.getDisplayOrder());
+             expRepo.save(item);
+        }
     }
 }

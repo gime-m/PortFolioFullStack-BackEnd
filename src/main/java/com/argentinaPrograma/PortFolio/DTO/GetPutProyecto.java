@@ -17,4 +17,5 @@ public class GetPutProyecto {
     private String link;
     private String imagen; 
     private Long personaId;
+    private int displayOrder;
 }

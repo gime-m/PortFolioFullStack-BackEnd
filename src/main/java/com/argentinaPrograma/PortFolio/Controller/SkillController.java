@@ -1,5 +1,6 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
+import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
 import com.argentinaPrograma.PortFolio.DTO.GetPutSkill;
 import com.argentinaPrograma.PortFolio.DTO.PostSkill;
 import java.util.List;
@@ -47,6 +48,11 @@ public class SkillController {
     @PutMapping("/skill/editar")
     public void EditarSkill(@RequestBody GetPutSkill skill){
         skServ.editarElemento(skill);
+    }
+    
+    @PutMapping("/skill/ordenar")
+    public void OrdenarExperiencia(@RequestBody List<DisplayOrder> order){
+        skServ.editarOrden(order);
     }
 
 }

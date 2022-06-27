@@ -1,5 +1,6 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
+import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
 import com.argentinaPrograma.PortFolio.DTO.GetPutExperiencia;
 import com.argentinaPrograma.PortFolio.DTO.PostExperiencia;
 import java.util.List;
@@ -53,5 +54,10 @@ public class ExperienciaController {
     @PutMapping("/exp/editar")
     public void EditarExperiencia(@RequestBody GetPutExperiencia exp){
         expServ.editarElemento(exp);
+    }
+    
+    @PutMapping("/exp/ordenar")
+    public void OrdenarExperiencia(@RequestBody List<DisplayOrder> order){
+        expServ.editarOrden(order);
     }
 }

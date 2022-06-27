@@ -1,5 +1,6 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
+import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
 import com.argentinaPrograma.PortFolio.DTO.GetPutProyecto;
 import com.argentinaPrograma.PortFolio.DTO.PostProyecto;
 import com.argentinaPrograma.PortFolio.Service.ImagenServiceInterface;
@@ -54,5 +55,10 @@ public class ProyectoController {
     public void EditarProyecto(@RequestBody GetPutProyecto ed){
         proyServ.editarElemento(ed);
     }  
+    
+    @PutMapping("/proy/ordenar")
+    public void OrdenarExperiencia(@RequestBody List<DisplayOrder> order){
+        proyServ.editarOrden(order);
+    }
 }
 

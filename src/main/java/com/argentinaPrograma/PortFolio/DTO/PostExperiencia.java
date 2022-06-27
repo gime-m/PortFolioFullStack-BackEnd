@@ -17,6 +17,7 @@ public class PostExperiencia {
     private Date fechaInicio;
     private Date fechaFin;
     private Boolean isCurrent;
-    private String imagen;  
+    private String imagen; 
+    private int displayOrder;
     private long personaId;
 }
