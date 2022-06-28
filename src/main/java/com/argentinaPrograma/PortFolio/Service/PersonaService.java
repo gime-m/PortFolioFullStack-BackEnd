@@ -1,6 +1,7 @@
 package com.argentinaPrograma.PortFolio.Service;
 
 import com.argentinaPrograma.PortFolio.DTO.GetPutPersona;
+import com.argentinaPrograma.PortFolio.DTO.GetPutPersona2;
 import com.argentinaPrograma.PortFolio.Model.Persona;
 import com.argentinaPrograma.PortFolio.Repository.PersonaRepository;
 import java.util.List;
@@ -36,11 +37,16 @@ public class PersonaService implements PersonaServiceInterface{
         persRepo.save(obj);      
     }
     
-    
-    
     @Override
     public Persona crearElemento (Persona pers) {
         return persRepo.save(pers);
+    }
+    
+    @Override
+    public <T extends GetPutPersona2> void editarPersona(T pers) {
+        Persona obj = persRepo.findById(pers.getId()).get();
+        modelMapper.map(pers, obj);
+        persRepo.save(obj);      
     }
 
     /*

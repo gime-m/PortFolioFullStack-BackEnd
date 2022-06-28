@@ -1,6 +1,9 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
 import com.argentinaPrograma.PortFolio.DTO.GetPutPersona;
+import com.argentinaPrograma.PortFolio.DTO.GetPutPersonaDatos;
+import com.argentinaPrograma.PortFolio.DTO.GetPutPersonaDescripcion;
+import com.argentinaPrograma.PortFolio.DTO.GetPutPersonaNombre;
 import com.argentinaPrograma.PortFolio.Model.Persona;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +37,21 @@ public class PersonaController {
     @PutMapping("/persona/editar")
     public void EditarPersona(@RequestBody GetPutPersona pers){
         persServ.editarElemento(pers);
+    }
+    
+    @PutMapping("/persona/editar/nombre")
+    public void EditarPersonaNombre(@RequestBody GetPutPersonaNombre pers){
+        persServ.editarPersona(pers);
+    }
+    
+    @PutMapping("/persona/editar/desc")
+    public void EditarPersonaDescripcion(@RequestBody GetPutPersonaDescripcion pers){
+        persServ.editarPersona(pers);
+    }
+    
+    @PutMapping("/persona/editar/datos")
+    public void EditarPersonaDatos(@RequestBody GetPutPersonaDatos pers){
+        persServ.editarPersona(pers);
     }
     
     /*
