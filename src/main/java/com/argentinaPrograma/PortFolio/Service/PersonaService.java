@@ -1,7 +1,6 @@
 package com.argentinaPrograma.PortFolio.Service;
 
-import com.argentinaPrograma.PortFolio.DTO.GetPutPersona;
-import com.argentinaPrograma.PortFolio.DTO.GetPutPersona2;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.IdPersona;
 import com.argentinaPrograma.PortFolio.Model.Persona;
 import com.argentinaPrograma.PortFolio.Repository.PersonaRepository;
 import java.util.List;
@@ -30,29 +29,44 @@ public class PersonaService implements PersonaServiceInterface{
     }
 
     @Override
-    public void editarElemento(GetPutPersona pers) {
-        Persona obj = persRepo.findById(pers.getId()).get();
-        Persona objCambios = modelMapper.map(pers, Persona.class);
-        modelMapper.map(objCambios, obj);
-        persRepo.save(obj);      
-    }
-    
-    @Override
     public Persona crearElemento (Persona pers) {
         return persRepo.save(pers);
     }
     
     @Override
-    public <T extends GetPutPersona2> void editarPersona(T pers) {
+    public <T extends IdPersona> void editarPersona(T pers) {
         Persona obj = persRepo.findById(pers.getId()).get();
         modelMapper.map(pers, obj);
         persRepo.save(obj);      
     }
+    
+    @Override
+    public void editarImagenPerfil(Long id, String path) {
+        Persona obj = persRepo.findById(id).get();
+        obj.setImagenPerfil(path);
+        persRepo.save(obj);      
+    }
+    
+    @Override
+    public void editarBanner(Long id, String path) {
+        Persona obj = persRepo.findById(id).get();
+        obj.setBanner(path);
+        persRepo.save(obj);      
+    }
+    
 
     /*
     @Override
     public void borrarElemento(Long id) {
         persRepo.deleteById(id);
+    }
+    
+    @Override
+    public void editarElemento(GetPutPersona pers) {
+        Persona obj = persRepo.findById(pers.getId()).get();
+        Persona objCambios = modelMapper.map(pers, Persona.class);
+        modelMapper.map(objCambios, obj);
+        persRepo.save(obj);      
     }
     */
 }

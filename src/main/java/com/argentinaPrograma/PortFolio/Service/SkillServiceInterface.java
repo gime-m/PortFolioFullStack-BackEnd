@@ -1,16 +1,8 @@
 package com.argentinaPrograma.PortFolio.Service;
 
-import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
-import com.argentinaPrograma.PortFolio.DTO.GetPutSkill;
-import com.argentinaPrograma.PortFolio.DTO.PostSkill;
-import java.util.List;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutSkill;
+import com.argentinaPrograma.PortFolio.DTO.PostDTO.PostSkill;
+import com.argentinaPrograma.PortFolio.Model.Skill;
 
-public interface SkillServiceInterface {
-    public List<GetPutSkill> verTodoPorPersona(Long personaId);
-    public GetPutSkill crearElemento (PostSkill skill);
-    public void borrarElemento (Long id);
-    public GetPutSkill buscarElemento (Long id);
-    public void editarElemento(GetPutSkill skill);
-    public void editarOrden (List<DisplayOrder> order);
-    
+public interface SkillServiceInterface extends AbstractServiceInterface<Skill, GetPutSkill, PostSkill>{
 }

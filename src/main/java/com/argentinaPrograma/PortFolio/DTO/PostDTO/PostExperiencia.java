@@ -1,24 +1,19 @@
-package com.argentinaPrograma.PortFolio.DTO;
+package com.argentinaPrograma.PortFolio.DTO.PostDTO;
 
 import java.sql.Date;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
 @Getter @Setter
-public class GetPutExperiencia {
-    
-    private Long id;
-    private String titulo;
+public final class PostExperiencia extends AbstractPost{
     private String descripcion;
     private String lugar;
     private Date fechaInicio;
     private Date fechaFin;
     private Boolean isCurrent;
-    private String imagen;  
-    private int displayOrder;
-    private Long personaId;
+    private String imagen; 
 }

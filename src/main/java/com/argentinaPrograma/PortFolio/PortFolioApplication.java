@@ -28,47 +28,186 @@ public class PortFolioApplication{
     @Bean
     CommandLineRunner run(UsuarioServiceInterface userServ, PersonaServiceInterface persServ, ExperienciaServiceInterface expServ, EducacionServiceInterface edServ, SkillServiceInterface skServ, ProyectoServiceInterface proyServ) {
        return (String[] args) -> {
-
-           //Roles y usuarios
-           userServ.guardarRol(new Rol(null ,"ADMIN"));
-           userServ.guardarRol(new Rol(null ,"USER"));
-           
-           userServ.guardarUsuario(new Usuario(null, "GimenaMartin", "gimenamartin144", "Gimena Martín", new ArrayList<>()));
-           userServ.guardarUsuario(new Usuario(null, "Invitado", "1234", "Invitado", new ArrayList<>()));
-           
-           userServ.rolAUsuario("GimenaMartin", "ADMIN");
-           userServ.rolAUsuario("Invitado", "USER");
            
            //Persona
-           persServ.crearElemento(new Persona(null, "Gimena", "Martín Girardi", "Estudiante de astronomía", "Soy estudiante de astronomía, en la UNSJ en San Juan. Actualmente estoy cursando mi último año, y participo en proyectos de investigación enfocados en el estudio de estrellas con presencia de exoplanetas.","Rivadavia, San Juan", "FCEFN - UNSJ", "gimenamartin@hotmail.com", "+54 264 459 0668", "", "", "github.com/gime-m", new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>()));
- 
+           persServ.crearElemento(Persona.builder()
+                   .id(null)
+                   .nombre("Gimena")
+                   .apellido("Martín Girardi")
+                   .ocupacion("Estudiante de astronomía")
+                   .descripcion("Soy estudiante de astronomía, en la UNSJ en San Juan. Actualmente estoy cursando mi último año, y participo en proyectos de investigación enfocados en el estudio de estrellas con presencia de exoplanetas.")
+                   .ubicacion("Rivadavia, San Juan")
+                   .lugarTrabajo("FCEFN - UNSJ")
+                   .email("gimenamartin@hotmail.com")
+                   .telefono("+54 264 459 0668")
+                   .github("github.com/gime-m")
+                   .imagenPerfil("")
+                   .banner("")
+                   .experiencia(new HashSet<>())
+                   .educacion(new HashSet<>())
+                   .proyecto(new HashSet<>())
+                   .skill(new HashSet<>())
+                   .build());
+
+           //Roles y usuarios
+           userServ.guardarRol(Rol.builder()
+                   .id(null)
+                   .nombre("ADMIN")
+                   .build());
+           userServ.guardarRol(Rol.builder()
+                   .id(null)
+                   .nombre("USER")
+                   .build()); 
+           userServ.guardarUsuario(Usuario.builder()
+                   .roles(new ArrayList<>())
+                   .username("GimenaMartin")
+                   .password("0000")
+                   .nombre("Gimena Martín")
+                   .id(null)
+                   .build());
+           userServ.guardarUsuario(Usuario.builder()
+                   .roles(new ArrayList<>())
+                   .username("Invitado")
+                   .password("0000")
+                   .nombre("Invitado")
+                   .id(null)
+                   .build());
+           userServ.rolAUsuario("GimenaMartin", "ADMIN");
+           userServ.rolAUsuario("Invitado", "USER");
+
            //Experiencia
-           expServ.crearElemento(new PostExperiencia("Becaria EVC-CIN: Correlación planeta-metalicidad", "Estudio de correlación planeta-metalicidad en estrellas de tipos espectrales tempranos, mediante el uso de SYNTHE y ATLAS12", "FCEFN - UNSJ", new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2021-08-01").getTime()), null, true, "", 1));
-           expServ.crearElemento(new PostExperiencia("Auxiliar docente en el área de física", "Axiliar alumno en la cátedra Física I, colaborando con las correcciones de evaluaciones y la solución de consultas de alumnos.", "FCEFN - UNSJ", new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2020-04-01").getTime()), null, true, "", 1));
+           expServ.crearElemento(PostExperiencia.builder()
+                   .titulo("Becaria EVC-CIN: Correlación planeta-metalicidad")
+                   .personaId(1)
+                   .displayOrder(1)
+                   .descripcion("Estudio de correlación planeta-metalicidad en estrellas de tipos espectrales tempranos, mediante el uso de SYNTHE y ATLAS12")
+                   .lugar("FCEFN - UNSJ")
+                   .fechaInicio(new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2021-08-01").getTime()))
+                   .fechaFin(null)
+                   .isCurrent(Boolean.TRUE)
+                   .imagen("")
+                   .build(), Experiencia.class, GetPutExperiencia.class);
+           expServ.crearElemento(PostExperiencia.builder()
+                   .titulo("Auxiliar docente en el área de física")
+                   .personaId(1)
+                   .displayOrder(2)
+                   .descripcion("Axiliar alumno en la cátedra Física I, colaborando con las correcciones de evaluaciones y la solución de consultas de alumnos.")
+                   .lugar("FCEFN - UNSJ")
+                   .fechaInicio(new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2020-04-01").getTime()))
+                   .fechaFin(null)
+                   .isCurrent(Boolean.TRUE)
+                   .imagen("")
+                   .build(), Experiencia.class, GetPutExperiencia.class);
            
            //Educacion
-           edServ.crearElemento(new PostEducacion ("En curso:Licenciatura en astronomía", "Estudios en cálculo, álgebra, computación y física, orientado al análisis de cuerpos celestes.", "FCEFN - UNSJ", new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2018-03-01").getTime()), null, true, "", (1) ));
-           edServ.crearElemento(new PostEducacion ("Argentina Programa: Fase 1", "Introducción a la programación", "", new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2020-01-01").getTime()), null, false, "", 1 ));
-           edServ.crearElemento(new PostEducacion ("Capacitación en inglés", "", "Instituto privado Saint Thomas, San Juan", new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2021-12-01").getTime()), null, true, "", 1 ));
+           edServ.crearElemento(PostEducacion.builder()
+                   .titulo("En curso:Licenciatura en astronomía")
+                   .personaId(1)
+                   .displayOrder(1)
+                   .descripcion("Estudios en cálculo, álgebra, computación y física, orientado al análisis de cuerpos celestes.")
+                   .institucion("FCEFN - UNSJ")
+                   .fechaInicio(new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2018-03-01").getTime()))
+                   .fechaFin(null)
+                   .isCurrent(Boolean.TRUE)
+                   .imagen("")
+                   .build(), Educacion.class, GetPutEducacion.class);
+           edServ.crearElemento(PostEducacion.builder()
+                   .titulo("Argentina Programa: Fase 1")
+                   .personaId(1).displayOrder(2).descripcion("Introducción a la programación")
+                   .institucion("")
+                   .fechaInicio(new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2020-01-01").getTime()))
+                   .fechaFin(null)
+                   .isCurrent(Boolean.FALSE)
+                   .imagen("")
+                   .build(), Educacion.class, GetPutEducacion.class);
+           edServ.crearElemento(PostEducacion.builder()
+                   .titulo("Capacitación en inglés")
+                   .personaId(1).displayOrder(3).descripcion("")
+                   .institucion("Instituto privado Saint Thomas, San Juan")
+                   .fechaInicio(new java.sql.Date(new SimpleDateFormat("yyyyMMdd").parse("2021-12-01").getTime()))
+                   .fechaFin(null).isCurrent(Boolean.FALSE)
+                   .imagen("")
+                   .build(), Educacion.class, GetPutEducacion.class);
            
            //Skill
-           skServ.crearElemento(new PostSkill ("FORTRAN", 8, "hard", 1));
-           skServ.crearElemento(new PostSkill ("HTML", 7, "hard", 1));
-           skServ.crearElemento(new PostSkill ("CSS", 6, "hard", 1));
-           skServ.crearElemento(new PostSkill ("TypeScript", 5, "hard", 1));
-           skServ.crearElemento(new PostSkill ("Angular", 6, "hard", 1));
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("FORTRAN")
+                   .personaId(1)
+                   .displayOrder(1)
+                   .valor(8)
+                   .tipo("hard")
+                   .build(), Skill.class, GetPutSkill.class);
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("HTML")
+                   .personaId(1)
+                   .displayOrder(2)
+                   .valor(7)
+                   .tipo("hard")
+                   .build(), Skill.class, GetPutSkill.class);
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("CSS")
+                   .personaId(1)
+                   .displayOrder(3)
+                   .valor(6)
+                   .tipo("hard")
+                   .build(), Skill.class, GetPutSkill.class);
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("TypeScript")
+                   .personaId(1)
+                   .displayOrder(4)
+                   .valor(5)
+                   .tipo("hard")
+                   .build(), Skill.class, GetPutSkill.class);
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("Angular")
+                   .personaId(1)
+                   .displayOrder(5)
+                   .valor(6)
+                   .tipo("hard")
+                   .build(), Skill.class, GetPutSkill.class);
            
-           skServ.crearElemento(new PostSkill ("Comunicación", 8, "soft", 1));
-           skServ.crearElemento(new PostSkill ("Dedicación", 9, "soft", 1));
-           
-           skServ.crearElemento(new PostSkill ("Inglés", 9, "idioma", 1));
-           skServ.crearElemento(new PostSkill ("Alemán", 3, "idioma", 1));
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("Comunicación")
+                   .personaId(1)
+                   .displayOrder(1)
+                   .valor(6)
+                   .tipo("soft")
+                   .build(), Skill.class, GetPutSkill.class);
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("Dedicación")
+                   .personaId(1)
+                   .displayOrder(2)
+                   .valor(9)
+                   .tipo("soft")
+                   .build(), Skill.class, GetPutSkill.class);
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("Inglés")
+                   .personaId(1)
+                   .displayOrder(1)
+                   .valor(9)
+                   .tipo("idioma")
+                   .build(), Skill.class, GetPutSkill.class);
+           skServ.crearElemento(PostSkill.builder()
+                   .titulo("Alemán")
+                   .personaId(1)
+                   .displayOrder(2)
+                   .valor(3)
+                   .tipo("idioma")
+                   .build(), Skill.class, GetPutSkill.class);
            
            //Proyectos
-           
-           proyServ.crearElemento(new PostProyecto ("Portfolio para Argentina Programa", "", null, "github.com", "", 1));
+           proyServ.crearElemento(PostProyecto.builder()
+                   .titulo("Portfolio para Argentina Programa")
+                   .personaId(1)
+                   .displayOrder(1)
+                   .descripcion("")
+                   .fecha(null)
+                   .link("github.com")
+                   .imagen("")
+                   .build(), Proyecto.class, GetPutProyecto.class);
        };
     }
     */
+    
      
 }

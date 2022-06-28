@@ -1,6 +1,6 @@
 package com.argentinaPrograma.PortFolio.Security.Filter;
 
-import com.argentinaPrograma.PortFolio.DTO.AuthResponse;
+import com.argentinaPrograma.PortFolio.DTO.AuthDTO.AuthResponse;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +12,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.security.authentication.AuthenticationManager;

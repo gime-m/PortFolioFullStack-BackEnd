@@ -1,18 +1,15 @@
-package com.argentinaPrograma.PortFolio.DTO;
+package com.argentinaPrograma.PortFolio.DTO.PostDTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
 @Getter @Setter
-public class PostSkill {
-    
+public abstract class AbstractPost {
     private String titulo;
-    private int valor; 
-    private String tipo;     
     private long personaId;
     private int displayOrder;
 }

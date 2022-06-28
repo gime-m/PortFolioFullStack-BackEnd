@@ -1,6 +1,7 @@
 package com.argentinaPrograma.PortFolio.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -11,22 +12,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 @JsonIgnoreProperties({"experiencia","educacion","skill","proyecto"})
 @Entity
-public class Persona {
+public class Persona implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO , generator = "PersonaGenerator")
-    @SequenceGenerator(name="PersonaGenerator", sequenceName = "persona_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(nullable = false, length=25)
@@ -62,15 +64,19 @@ public class Persona {
     @Column(nullable = false, length=60)
     private String github;
     
-    @OneToMany(mappedBy = "personaExp", fetch = FetchType.LAZY, targetEntity = Experiencia.class, cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, targetEntity = Experiencia.class, cascade = CascadeType.ALL)
     private Set<Experiencia> experiencia = new HashSet<Experiencia>();
     
-    @OneToMany(mappedBy = "personaEduc", fetch = FetchType.LAZY, targetEntity = Educacion.class, cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, targetEntity = Educacion.class, cascade = CascadeType.ALL)
     private Set<Educacion> educacion = new HashSet<Educacion>();
     
-    @OneToMany(mappedBy = "personaSkill", fetch = FetchType.LAZY, targetEntity = Skill.class, cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, targetEntity = Skill.class, cascade = CascadeType.ALL)
     private Set<Skill> skill = new HashSet<Skill>();
     
-    @OneToMany(mappedBy = "personaProy", fetch = FetchType.LAZY, targetEntity = Proyecto.class, cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, targetEntity = Proyecto.class, cascade = CascadeType.ALL)
     private Set<Proyecto> proyecto = new HashSet<Proyecto>();
 }

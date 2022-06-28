@@ -1,20 +1,17 @@
-package com.argentinaPrograma.PortFolio.DTO;
+package com.argentinaPrograma.PortFolio.DTO.PostDTO;
 
 import java.sql.Date;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
 @Getter @Setter
-public class PostProyecto {
-    private String titulo;
+public final class PostProyecto extends AbstractPost{
     private String descripcion;
     private Date fecha;
     private String link;
     private String imagen; 
-    private long personaId;
-    private int displayOrder;
 }

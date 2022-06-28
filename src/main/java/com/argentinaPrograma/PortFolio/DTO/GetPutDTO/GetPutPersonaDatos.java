@@ -1,14 +1,10 @@
-package com.argentinaPrograma.PortFolio.DTO;
+package com.argentinaPrograma.PortFolio.DTO.GetPutDTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter @Setter
-public class GetPutPersonaDatos extends GetPutPersona2{
+public final class GetPutPersonaDatos extends IdPersona{
     private String ubicacion;
     private String lugarTrabajo;
     private String email;

@@ -1,8 +1,7 @@
 
 package com.argentinaPrograma.PortFolio.Service;
 
-import com.argentinaPrograma.PortFolio.DTO.GetPutPersona;
-import com.argentinaPrograma.PortFolio.DTO.GetPutPersona2;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.IdPersona;
 import com.argentinaPrograma.PortFolio.Model.Persona;
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +9,8 @@ import java.util.Optional;
 public interface PersonaServiceInterface {
     public List<Persona> verTodo();
     public Persona crearElemento (Persona pers);
-    //public void borrarElemento (Long id);
     public Optional<Persona> buscarElemento (Long id);
-    public void editarElemento(GetPutPersona pers);
-    public <T extends GetPutPersona2> void editarPersona (T pers);
+    public <T extends IdPersona> void editarPersona (T pers);
+    public void editarImagenPerfil(Long id, String path);
+    public void editarBanner(Long id, String path);
 }

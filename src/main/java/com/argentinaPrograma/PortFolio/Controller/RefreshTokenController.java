@@ -1,6 +1,6 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
-import com.argentinaPrograma.PortFolio.DTO.AuthResponse;
+import com.argentinaPrograma.PortFolio.DTO.AuthDTO.AuthResponse;
 import com.argentinaPrograma.PortFolio.Model.Rol;
 import com.argentinaPrograma.PortFolio.Model.Usuario;
 import com.argentinaPrograma.PortFolio.Service.UsuarioServiceInterface;

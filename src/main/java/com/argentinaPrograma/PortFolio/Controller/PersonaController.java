@@ -1,9 +1,8 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
-import com.argentinaPrograma.PortFolio.DTO.GetPutPersona;
-import com.argentinaPrograma.PortFolio.DTO.GetPutPersonaDatos;
-import com.argentinaPrograma.PortFolio.DTO.GetPutPersonaDescripcion;
-import com.argentinaPrograma.PortFolio.DTO.GetPutPersonaNombre;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaDatos;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaDescripcion;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaNombre;
 import com.argentinaPrograma.PortFolio.Model.Persona;
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +33,6 @@ public class PersonaController {
         return persServ.buscarElemento(id);
     }
     
-    @PutMapping("/persona/editar")
-    public void EditarPersona(@RequestBody GetPutPersona pers){
-        persServ.editarElemento(pers);
-    }
-    
     @PutMapping("/persona/editar/nombre")
     public void EditarPersonaNombre(@RequestBody GetPutPersonaNombre pers){
         persServ.editarPersona(pers);
@@ -63,6 +57,11 @@ public class PersonaController {
     @DeleteMapping("/persona/eliminar")
     public void eliminarPersona(@RequestParam Long id){
         persServ.borrarElemento(id);
+    
+    @PutMapping("/persona/editar")
+    public void EditarPersona(@RequestBody GetPutPersona pers){
+        persServ.editarElemento(pers);
+    }
     }
     */
 }

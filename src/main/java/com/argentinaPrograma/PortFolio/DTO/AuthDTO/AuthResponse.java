@@ -1,4 +1,4 @@
-package com.argentinaPrograma.PortFolio.DTO;
+package com.argentinaPrograma.PortFolio.DTO.AuthDTO;
 
 import java.util.List;
 import lombok.AllArgsConstructor;

@@ -1,15 +1,8 @@
 package com.argentinaPrograma.PortFolio.Service;
 
-import com.argentinaPrograma.PortFolio.DTO.DisplayOrder;
-import com.argentinaPrograma.PortFolio.DTO.GetPutEducacion;
-import com.argentinaPrograma.PortFolio.DTO.PostEducacion;
-import java.util.List;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutEducacion;
+import com.argentinaPrograma.PortFolio.DTO.PostDTO.PostEducacion;
+import com.argentinaPrograma.PortFolio.Model.Educacion;
 
-public interface EducacionServiceInterface {
-    public List<GetPutEducacion> verTodoPorPersona(Long personaId);
-    public GetPutEducacion crearElemento (PostEducacion edu);
-    public void borrarElemento (Long id);
-    public GetPutEducacion buscarElemento (Long id);
-    public void editarElemento (GetPutEducacion edu);
-    public void editarOrden (List<DisplayOrder> order);
+public interface EducacionServiceInterface extends AbstractImageServiceInterface<Educacion, GetPutEducacion, PostEducacion> {
 }
