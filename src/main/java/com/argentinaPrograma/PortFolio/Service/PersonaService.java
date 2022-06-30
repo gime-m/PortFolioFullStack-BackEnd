@@ -1,8 +1,10 @@
 package com.argentinaPrograma.PortFolio.Service;
 
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersona;
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.IdPersona;
 import com.argentinaPrograma.PortFolio.Model.Persona;
 import com.argentinaPrograma.PortFolio.Repository.PersonaRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
@@ -19,13 +21,21 @@ public class PersonaService implements PersonaServiceInterface{
     private ModelMapper modelMapper;
     
     @Override
-    public List<Persona> verTodo() {
-        return persRepo.findAll();
+    public List<GetPutPersona> verTodo() {
+        //return persRepo.findAll();
+        List<Persona> items = persRepo.findAll();
+        List<GetPutPersona> dto = new ArrayList<>();
+        for(int i=0; i<items.size(); i++){
+            dto.add(i, modelMapper.map(items.get(i), GetPutPersona.class));
+        }
+      return dto;
     }
 
     @Override
-    public Optional<Persona> buscarElemento(Long id) {
-        return persRepo.findById(id);
+    public GetPutPersona buscarElemento(Long id) {
+        //return persRepo.findById(id);
+        Optional<Persona> item = persRepo.findById(id);
+        return modelMapper.map(item.get(), GetPutPersona.class); 
     }
 
     @Override

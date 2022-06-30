@@ -1,6 +1,34 @@
 package com.argentinaPrograma.PortFolio;
 
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutEducacion;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutExperiencia;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaTema;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutProyecto;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutSkill;
+import com.argentinaPrograma.PortFolio.DTO.PostDTO.PostEducacion;
+import com.argentinaPrograma.PortFolio.DTO.PostDTO.PostExperiencia;
+import com.argentinaPrograma.PortFolio.DTO.PostDTO.PostProyecto;
+import com.argentinaPrograma.PortFolio.DTO.PostDTO.PostSkill;
+import com.argentinaPrograma.PortFolio.Model.Educacion;
+import com.argentinaPrograma.PortFolio.Model.Experiencia;
+import com.argentinaPrograma.PortFolio.Model.Persona;
+import com.argentinaPrograma.PortFolio.Model.Proyecto;
+import com.argentinaPrograma.PortFolio.Model.Rol;
+import com.argentinaPrograma.PortFolio.Model.Skill;
+import com.argentinaPrograma.PortFolio.Model.Tema;
+import com.argentinaPrograma.PortFolio.Model.Usuario;
+import com.argentinaPrograma.PortFolio.Service.EducacionServiceInterface;
+import com.argentinaPrograma.PortFolio.Service.ExperienciaServiceInterface;
+import com.argentinaPrograma.PortFolio.Service.PersonaServiceInterface;
+import com.argentinaPrograma.PortFolio.Service.ProyectoServiceInterface;
+import com.argentinaPrograma.PortFolio.Service.SkillServiceInterface;
+import com.argentinaPrograma.PortFolio.Service.TemaServiceInterface;
+import com.argentinaPrograma.PortFolio.Service.UsuarioServiceInterface;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +54,7 @@ public class PortFolioApplication{
     
     /*
     @Bean
-    CommandLineRunner run(UsuarioServiceInterface userServ, PersonaServiceInterface persServ, ExperienciaServiceInterface expServ, EducacionServiceInterface edServ, SkillServiceInterface skServ, ProyectoServiceInterface proyServ) {
+    CommandLineRunner run(UsuarioServiceInterface userServ, PersonaServiceInterface persServ, ExperienciaServiceInterface expServ, EducacionServiceInterface edServ, SkillServiceInterface skServ, ProyectoServiceInterface proyServ, TemaServiceInterface temaServ) {
        return (String[] args) -> {
            
            //Persona
@@ -47,6 +75,7 @@ public class PortFolioApplication{
                    .educacion(new HashSet<>())
                    .proyecto(new HashSet<>())
                    .skill(new HashSet<>())
+                   .tema(null)
                    .build());
 
            //Roles y usuarios
@@ -205,9 +234,50 @@ public class PortFolioApplication{
                    .link("github.com")
                    .imagen("")
                    .build(), Proyecto.class, GetPutProyecto.class);
+           
+           
+           //Temas
+           temaServ.crearTema(Tema.builder()
+                   .id(null)
+                   .mainColor("218, 207, 141, 1")
+                   .mainColorDark("151, 118, 81, 1")
+                   .mainColorDarker("86, 74, 62, 1")
+                   .mainColorLowOpacity("255, 246, 194, 0.633")
+                   .shadowColor("158, 152, 118, 1")
+                   .nombre("beige")
+                   .build());
+           temaServ.crearTema(Tema.builder()
+                   .id(null)
+                   .mainColor("255, 165, 222, 1")
+                   .mainColorDark("186, 103, 130, 1")
+                   .mainColorDarker("121, 57, 76, 1")
+                   .mainColorLowOpacity("255, 190, 229, 0.711")
+                   .shadowColor("218, 174, 200, 1")
+                   .nombre("rosa")
+                   .build()); 
+           temaServ.crearTema(Tema.builder()
+                   .id(null)
+                   .mainColor("100, 198, 103, 1")
+                   .mainColorDark("86, 122, 78, 1")
+                   .mainColorDarker("28, 72, 27, 1")
+                   .mainColorLowOpacity("161, 232, 145, 0.711")
+                   .shadowColor("137, 210, 134, 1")
+                   .nombre("verde")
+                   .build());
+           temaServ.crearTema(Tema.builder()
+                   .id(null)
+                   .mainColor("97, 226, 255, 1")
+                   .mainColorDark("35, 142, 152, 11")
+                   .mainColorDarker("3, 92, 97, 1")
+                   .mainColorLowOpacity("160, 242, 255, 0.711")
+                   .shadowColor("115, 197, 205, 1")
+                   .nombre("azul")
+                   .build());
+           temaServ.cambiarTema(GetPutPersonaTema.builder()
+                   .personaId(1)
+                   .temaId(2)
+                   .build());
        };
     }
     */
-    
-     
 }

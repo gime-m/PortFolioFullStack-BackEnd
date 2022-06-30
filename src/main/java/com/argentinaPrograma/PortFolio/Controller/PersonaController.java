@@ -1,11 +1,10 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersona;
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaDatos;
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaDescripcion;
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaNombre;
-import com.argentinaPrograma.PortFolio.Model.Persona;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,13 +22,13 @@ public class PersonaController {
     
     @GetMapping ("/persona/ver/")
     @ResponseBody
-    public List<Persona> verListaPersonas(){
+    public List<GetPutPersona> verListaPersonas(){
         return persServ.verTodo();
     }
     
     @GetMapping ("/persona")
     @ResponseBody
-    public Optional<Persona> verPersona(@RequestParam Long id){
+    public GetPutPersona verPersona(@RequestParam Long id){
         return persServ.buscarElemento(id);
     }
     
@@ -61,7 +60,6 @@ public class PersonaController {
     @PutMapping("/persona/editar")
     public void EditarPersona(@RequestBody GetPutPersona pers){
         persServ.editarElemento(pers);
-    }
     }
     */
 }

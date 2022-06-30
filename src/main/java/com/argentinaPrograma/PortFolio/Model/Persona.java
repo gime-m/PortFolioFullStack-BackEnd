@@ -11,7 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +25,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@JsonIgnoreProperties({"experiencia","educacion","skill","proyecto"})
+@JsonIgnoreProperties({"experiencia","educacion","skill","proyecto", "tema"})
 @Entity
 public class Persona implements Serializable{
     
@@ -56,13 +58,17 @@ public class Persona implements Serializable{
     private String telefono;
     
     @Column(nullable = false, length=60)
+    private String github;
+    
+    @Column(nullable = false, length=60)
     private String imagenPerfil;
     
     @Column(nullable = false, length=60)
     private String banner;
     
-    @Column(nullable = false, length=60)
-    private String github;
+    @OneToOne
+    @JoinColumn(name = "tema_id", referencedColumnName = "id")
+    private Tema tema;
     
     @Builder.Default
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, targetEntity = Experiencia.class, cascade = CascadeType.ALL)
