@@ -44,6 +44,12 @@ public class ImagenPersonaController {
         persServ.editarBanner(id, "ver-imagen/imagen-banner-"+id+".png");
     }
     
+    @PutMapping("/subir-imagen/fondo")
+    public void subirImagenFondo(@RequestParam Long id, @RequestParam MultipartFile file) {
+        imgServ.subirImagen(file, id, "imagenFondo");
+        persServ.editarImagenFondo(id, "ver-imagen/imagen-fondo-"+id+".png");
+    }
+    
     @DeleteMapping("borrar-imagen/perfil/{id}")
     public void borrarImagenPerfil (@PathVariable Long id) {
         Path path = imgServ.getRootPath().resolve("imagen-perfil-"+id+".png");
@@ -56,6 +62,13 @@ public class ImagenPersonaController {
         Path path = imgServ.getRootPath().resolve("imagen-banner-"+id+".png");
         imgServ.borrarImagen(path);
         persServ.editarBanner(id, "");
+    }
+    
+    @DeleteMapping("borrar-imagen/fondo/{id}")
+    public void borrarImagenFondo (@PathVariable Long id) {
+        Path path = imgServ.getRootPath().resolve("imagen-fondo-"+id+".png");
+        imgServ.borrarImagen(path);
+        persServ.editarImagenFondo(id, "");
     }
 }
 

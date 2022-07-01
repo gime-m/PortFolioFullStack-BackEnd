@@ -1,7 +1,7 @@
 package com.argentinaPrograma.PortFolio.Service;
 
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaTema;
-import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetTema;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetTemaCorto;
 import com.argentinaPrograma.PortFolio.Model.Persona;
 import com.argentinaPrograma.PortFolio.Model.Tema;
 import com.argentinaPrograma.PortFolio.Repository.PersonaRepository;
@@ -44,11 +44,11 @@ public class TemaService implements  TemaServiceInterface{
     }
     
     @Override
-    public List<GetTema> verTodosTema () {
+    public List<GetTemaCorto> verTodosTema () {
         List<Tema> temas = temaRepo.findAll();
-        List<GetTema> temasSimple = new ArrayList<>();;
+        List<GetTemaCorto> temasSimple = new ArrayList<>();;
         for(int i=0; i<temas.size(); i++){
-            temasSimple.add(modelMapper.map(temas.get(i), GetTema.class));
+            temasSimple.add(modelMapper.map(temas.get(i), GetTemaCorto.class));
         }
         return temasSimple;
         

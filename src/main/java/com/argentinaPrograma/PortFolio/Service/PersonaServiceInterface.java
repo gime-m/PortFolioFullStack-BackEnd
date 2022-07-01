@@ -13,4 +13,5 @@ public interface PersonaServiceInterface {
     public <T extends IdPersona> void editarPersona (T pers);
     public void editarImagenPerfil(Long id, String path);
     public void editarBanner(Long id, String path);
+    public void editarImagenFondo(Long id, String path);
 }

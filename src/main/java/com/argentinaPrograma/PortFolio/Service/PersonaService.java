@@ -64,6 +64,13 @@ public class PersonaService implements PersonaServiceInterface{
         persRepo.save(obj);      
     }
     
+    @Override
+    public void editarImagenFondo (Long id, String path) {
+        Persona obj = persRepo.findById(id).get();
+        obj.setImagenFondo(path);
+        persRepo.save(obj);      
+    }
+    
 
     /*
     @Override

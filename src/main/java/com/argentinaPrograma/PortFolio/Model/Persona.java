@@ -60,11 +60,14 @@ public class Persona implements Serializable{
     @Column(nullable = false, length=60)
     private String github;
     
-    @Column(nullable = false, length=60)
+    @Column(nullable = true, length=60)
     private String imagenPerfil;
     
-    @Column(nullable = false, length=60)
+    @Column(nullable = true, length=60)
     private String banner;
+    
+    @Column(nullable = true, length=60)
+    private String imagenFondo;   
     
     @OneToOne
     @JoinColumn(name = "tema_id", referencedColumnName = "id")

@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @Getter @Setter
 @SuperBuilder (toBuilder = true)
 @NoArgsConstructor
-public class GetTema {
+public class GetTemaCorto {
     Long id;
     String nombre;
     String mainColor;   

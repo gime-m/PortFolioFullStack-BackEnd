@@ -32,6 +32,9 @@ public class ImagenService implements ImagenServiceInterface {
             case "banner": 
                 imgPath =  this.rootPath.resolve("imagen-banner-" + id + ".png");
                 break;
+            case "imagenFondo": 
+                imgPath =  this.rootPath.resolve("imagen-fondo-" + id + ".png");
+                break;
             case "experiencia":
                 imgPath =  this.rootPath.resolve("experiencia/imagen-" + id + ".png");
                 break; 

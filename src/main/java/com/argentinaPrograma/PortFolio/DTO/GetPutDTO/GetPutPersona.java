@@ -17,5 +17,6 @@ public final class GetPutPersona extends IdPersona{
     private String github;
     private String imagenPerfil;
     private String banner;
+    private String imagenFondo;
     private Long temaId;
 }

@@ -2,7 +2,7 @@
 package com.argentinaPrograma.PortFolio.Controller;
 
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaTema;
-import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetTema;
+import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetTemaCorto;
 import com.argentinaPrograma.PortFolio.Model.Tema;
 import com.argentinaPrograma.PortFolio.Service.TemaServiceInterface;
 import java.util.List;
@@ -30,7 +30,7 @@ public class TemaController {
     }
     
     @GetMapping("/tema/lista")
-    public List<GetTema> verTemasLista () {
+    public List<GetTemaCorto> verTemasLista () {
         return temaServ.verTodosTema();
     }
 }

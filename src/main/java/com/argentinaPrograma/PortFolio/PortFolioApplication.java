@@ -1,5 +1,12 @@
 package com.argentinaPrograma.PortFolio;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+/*
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutEducacion;
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutExperiencia;
 import com.argentinaPrograma.PortFolio.DTO.GetPutDTO.GetPutPersonaTema;
@@ -27,13 +34,8 @@ import com.argentinaPrograma.PortFolio.Service.UsuarioServiceInterface;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+*/
 
 @SpringBootApplication
 public class PortFolioApplication{
@@ -273,9 +275,19 @@ public class PortFolioApplication{
                    .shadowColor("115, 197, 205, 1")
                    .nombre("azul")
                    .build());
+            temaServ.crearTema(Tema.builder()
+                   .id(null)
+                   .mainColor("202, 155, 255, 1")
+                   .mainColorDark("140, 85, 154, 1")
+                   .mainColorDarker("72, 3, 97, 1")
+                   .mainColorLowOpacity("234, 160, 255, 0.711")
+                   .shadowColor("201, 115, 205, 1")
+                   .nombre("lila")
+                   .build());       
+    
            temaServ.cambiarTema(GetPutPersonaTema.builder()
                    .personaId(1)
-                   .temaId(2)
+                   .temaId(4)
                    .build());
        };
     }
