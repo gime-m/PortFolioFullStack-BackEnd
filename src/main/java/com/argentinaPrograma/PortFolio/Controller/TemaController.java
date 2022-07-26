@@ -19,7 +19,7 @@ public class TemaController {
     @Autowired
     private TemaServiceInterface temaServ;
     
-    @PutMapping("/tema/editar")
+    @PutMapping("/persona/editar/tema")
     public Tema editarTema(@RequestBody GetPutPersonaTema gpObj){
         return temaServ.cambiarTema(gpObj);
     }

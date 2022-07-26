@@ -20,7 +20,7 @@ public class PersonaController {
     @Autowired
     private PersonaServiceInterface persServ;
     
-    @GetMapping ("/persona/ver/")
+    @GetMapping ("/persona/lista/")
     @ResponseBody
     public List<GetPutPersona> verListaPersonas(){
         return persServ.verTodo();

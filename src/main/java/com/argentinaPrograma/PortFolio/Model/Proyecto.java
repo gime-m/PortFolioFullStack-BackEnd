@@ -20,12 +20,13 @@ public class Proyecto extends AbstractImageModel implements Serializable{
     @Column(length = 45, nullable=false)
     private String titulo;
     
-    @Column(length = 250)
+    @Column(length = 500,nullable = true)
     private String descripcion;
     
+    @Column(nullable = true)
     private Date fecha;
     
-    @Column(length = 60)
+    @Column(length = 150, nullable = true)
     private String link;
 
 }

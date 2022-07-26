@@ -13,6 +13,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 public abstract class AbstractImageModel extends AbstractModel{
     
-    @Column(length=60)
+    @Column(length=60, nullable = true)
     private String imagen;
 }

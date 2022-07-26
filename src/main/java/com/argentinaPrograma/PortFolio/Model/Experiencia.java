@@ -20,13 +20,18 @@ public class Experiencia extends AbstractImageModel implements Serializable{
     @Column(nullable = false, length=60)
     private String titulo;
     
-    @Column(length=250)
+    @Column(length=300, nullable = true)
     private String descripcion;
     
-    @Column(length=50)
+    @Column(length=50, nullable = true)
     private String lugar;
     
+    @Column(nullable = true)
     private Date fechaInicio;
+    
+    @Column(nullable = true)
     private Date fechaFin;
+    
+    @Column(nullable = true)
     private Boolean isCurrent; 
 }

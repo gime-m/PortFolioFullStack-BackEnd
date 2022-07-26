@@ -25,46 +25,46 @@ public class ImagenPersonaController {
     @Autowired
     PersonaServiceInterface persServ;
     
-    @GetMapping("/ver-imagen/{filename}")
+    @GetMapping("/persona/ver-imagen/{filename}")
     @ResponseBody
     public ResponseEntity<Resource> verImagen(@PathVariable String filename) {
         Resource file = imgServ.verImagen(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
     
-    @PutMapping("/subir-imagen/perfil")
+    @PutMapping("/persona/subir-imagen/perfil")
     public void subirImagenPefil(@RequestParam Long id, @RequestParam MultipartFile file) {
         imgServ.subirImagen(file, id, "imagenPerfil");
         persServ.editarImagenPerfil(id, "ver-imagen/imagen-perfil-"+id+".png");
     }
     
-    @PutMapping("/subir-imagen/banner")
+    @PutMapping("/persona/subir-imagen/banner")
     public void subirImagenBanner(@RequestParam Long id, @RequestParam MultipartFile file) {
         imgServ.subirImagen(file, id, "banner");
         persServ.editarBanner(id, "ver-imagen/imagen-banner-"+id+".png");
     }
     
-    @PutMapping("/subir-imagen/fondo")
+    @PutMapping("/persona/subir-imagen/fondo")
     public void subirImagenFondo(@RequestParam Long id, @RequestParam MultipartFile file) {
         imgServ.subirImagen(file, id, "imagenFondo");
         persServ.editarImagenFondo(id, "ver-imagen/imagen-fondo-"+id+".png");
     }
     
-    @DeleteMapping("borrar-imagen/perfil/{id}")
+    @DeleteMapping("/persona/borrar-imagen/perfil/{id}")
     public void borrarImagenPerfil (@PathVariable Long id) {
         Path path = imgServ.getRootPath().resolve("imagen-perfil-"+id+".png");
         imgServ.borrarImagen(path);
         persServ.editarImagenPerfil(id, "");
     }
     
-    @DeleteMapping("borrar-imagen/banner/{id}")
+    @DeleteMapping("/persona/borrar-imagen/banner/{id}")
     public void borrarImagenBanner (@PathVariable Long id) {
         Path path = imgServ.getRootPath().resolve("imagen-banner-"+id+".png");
         imgServ.borrarImagen(path);
         persServ.editarBanner(id, "");
     }
     
-    @DeleteMapping("borrar-imagen/fondo/{id}")
+    @DeleteMapping("/persona/borrar-imagen/fondo/{id}")
     public void borrarImagenFondo (@PathVariable Long id) {
         Path path = imgServ.getRootPath().resolve("imagen-fondo-"+id+".png");
         imgServ.borrarImagen(path);
