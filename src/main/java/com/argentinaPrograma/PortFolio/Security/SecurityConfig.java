@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:8080"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:8080", "https://portfolio-ap-gimenamg.web.app/login"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("*"));
