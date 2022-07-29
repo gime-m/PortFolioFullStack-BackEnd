@@ -16,7 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -28,7 +27,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Slf4j
 public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
-    private String secretKey;
+    private final String secretKey;
     public CustomAuthorizationFilter (String secretKey){
         this.secretKey = secretKey;
     };

@@ -47,11 +47,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers(HttpMethod.PUT).hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE).hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
-        http.authorizeRequests().anyRequest().authenticated();
         http.authorizeRequests().antMatchers("/login/**", "/refresh/**").permitAll();
+        http.authorizeRequests().anyRequest().authenticated();
+        http.formLogin();
         
         http.addFilter(new CustomAuthenticationFilter(secret, authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(secret), UsernamePasswordAuthenticationFilter.class);
+        
+        
     }
     
     @Bean
