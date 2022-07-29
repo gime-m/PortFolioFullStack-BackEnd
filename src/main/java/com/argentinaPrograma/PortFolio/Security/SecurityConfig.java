@@ -42,13 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.cors();
         
         //aquí podemos designar que roles pueden acceder a qué métodos, con que path
-        http.authorizeRequests().antMatchers("/login/**", "/refresh/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET).hasAnyAuthority("USER","ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST).hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT).hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE).hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll();
         http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/login/**", "/refresh/**").permitAll();
         
         http.addFilter(new CustomAuthenticationFilter(secret, authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(secret), UsernamePasswordAuthenticationFilter.class);
